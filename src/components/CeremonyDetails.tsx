@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLang } from '../i18n';
+import { LotusDivider } from './Ornament';
 import { motion } from 'motion/react';
 import { Clock, Calendar, MapPin, Heart, Sparkles, Palette, Utensils } from 'lucide-react';
 
@@ -19,13 +20,14 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
 
       <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         {/* Left Side: Text Content */}
-        <div className="lg:w-1/2 relative z-10 w-full">
+        <div className="w-full max-w-2xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
+            <LotusDivider className="mb-5" />
             <div className="inline-flex items-center gap-4 mb-6">
               <span className="text-brand-plum uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[11px] sm:text-xs font-bold drop-shadow-sm">
                 {t('උත්සව විස්තර', 'The Sacred Union')}

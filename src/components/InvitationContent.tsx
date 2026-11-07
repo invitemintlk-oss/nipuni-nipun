@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useLang, LanguageToggle } from '../i18n';
+import { LotusDivider, MandalaBackdrop } from './Ornament';
 import { Music, VolumeX, Heart } from 'lucide-react';
 import { Hero } from './Hero';
 import { FloatingPetals } from './FloatingPetals';
@@ -72,6 +73,7 @@ export function InvitationContent({
 
       <DeferredMount active={active} delay={120} minHeight="40vh">
         <div className="py-24 sm:py-32 bg-gradient-to-b from-brand-blush via-white to-brand-blush relative overflow-hidden">
+          <MandalaBackdrop />
           <CoupleDetails />
         </div>
       </DeferredMount>
@@ -80,6 +82,7 @@ export function InvitationContent({
 
       <DeferredMount active={active} delay={180} minHeight="40vh">
         <div className="py-24 sm:py-32 bg-white relative overflow-hidden">
+          <MandalaBackdrop position="right" />
           <CeremonyDetails event={eventParam} />
         </div>
       </DeferredMount>
@@ -102,6 +105,7 @@ export function InvitationContent({
             />
           </div>
           <div className="relative z-10 max-w-6xl mx-auto px-6 mb-16 text-center">
+            <LotusDivider className="mx-auto mb-5" />
             <span className="text-stone-900 uppercase tracking-[0.4em] text-[10px] sm:text-[11px] font-bold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
               {t('සුබ මොහොත එළඹෙන තුරු', 'The Wait Is Almost Over')}
             </span>
@@ -114,6 +118,7 @@ export function InvitationContent({
 
       <DeferredMount active={active} delay={420} minHeight="30vh">
         <div className="py-24 sm:py-32 bg-brand-blush relative overflow-hidden">
+          <MandalaBackdrop position="left" />
           <RSVPForm inviteeName={fullInviteeName} eventName={eventLabel} eventParam={eventParam} />
         </div>
       </DeferredMount>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLang } from '../i18n';
+import { GOOGLE_SCRIPT_URL } from '../config';
+import { LotusDivider } from './Ornament';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Loader2, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
@@ -39,7 +41,32 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
       setFormData(prev => ({ ...prev, name: inviteeName }));
     }
   }, [inviteeName]);
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbz8x8mlUoOB1dJzMTtI-wR1QEea6TciU40hejJ-4WObWDYJN7GOzqQiweArl6i2hidH0w/exec";
+
+  // Load wishes already saved in the sheet (rows with Show = YES).
+  React.useEffect(() => {
+    if (!GOOGLE_SCRIPT_URL) return;
+    let cancelled = false;
+    fetch(`${GOOGLE_SCRIPT_URL}?action=wishes`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (cancelled || !data?.ok || !Array.isArray(data.wishes)) return;
+        setWishes((prev) => {
+          const loaded: Wish[] = data.wishes.map((w: { id: string; name: string; message: string; createdAt: string | null }) => ({
+            id: `sheet-${w.id}`,
+            name: w.name,
+            message: w.message,
+            createdAt: w.createdAt ? new Date(w.createdAt) : new Date(),
+          }));
+          // Keep any wish posted in this visit before the list finished loading.
+          const local = prev.filter((p) => !p.id.startsWith('sheet-'));
+          return [...local, ...loaded];
+        });
+      })
+      .catch((err) => console.error('Could not load wishes: ', err));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,13 +74,16 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
     setIsSubmitting(true);
 
     try {
+      if (!GOOGLE_SCRIPT_URL) throw new Error('Google Apps Script URL is not set (src/config.ts).');
+
       const payload = new FormData();
       payload.append('sheet', 'WISH');
       payload.append('name', formData.name);
       payload.append('message', formData.message);
       payload.append('event', eventParam);
+      payload.append('lang', lang);
 
-      await fetch(scriptUrl, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         body: payload,
@@ -84,6 +114,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
       <div className="absolute top-0 right-1/4 w-3/4 h-3/4 bg-brand-lavender/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="text-center mb-16 relative">
+        <LotusDivider className="mx-auto mb-5" />
         <Sparkles className="absolute -top-8 left-1/2 -translate-x-1/2 w-8 h-8 text-brand-lavender/40 animate-pulse" />
         <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] font-bold mb-4 block drop-shadow-sm">
           {t('සුබපැතුම්', 'Guestbook')}

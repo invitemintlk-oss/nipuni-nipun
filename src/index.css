@@ -48,6 +48,40 @@ img {
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* ---------- Ornaments ---------- */
+.mandala-spin {
+  animation: mandala-spin 120s linear infinite;
+}
+@keyframes mandala-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandala-spin { animation: none; }
+}
+
+/* ---------- Sinhala typography ----------
+   The tiny uppercase "eyebrow" sizes suit short English capitals but make
+   Sinhala unreadable, so lift them and soften the heavy weights. */
+html[lang="si"] .text-\[9px\] { font-size: 13px; }
+html[lang="si"] .text-\[10px\] { font-size: 15px; }
+html[lang="si"] .text-\[11px\] { font-size: 16px; }
+html[lang="si"] .text-xs { font-size: 15px; }
+html[lang="si"] .text-sm { font-size: 16px; }
+@media (min-width: 640px) {
+  html[lang="si"] .sm\:text-\[10px\] { font-size: 15px; }
+  html[lang="si"] .sm\:text-\[11px\] { font-size: 17px; }
+  html[lang="si"] .sm\:text-xs { font-size: 17px; }
+  html[lang="si"] .sm\:text-sm { font-size: 17px; }
+}
+html[lang="si"] .font-black,
+html[lang="si"] .font-extrabold,
+html[lang="si"] .font-bold {
+  font-weight: 600;
+}
+html[lang="si"] body {
+  line-height: 1.7;
+}
+
 .writing-mode-vertical {
   writing-mode: vertical-rl;
 }

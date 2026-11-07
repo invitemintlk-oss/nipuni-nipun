@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLang } from '../i18n';
+import { LotusDivider } from './Ornament';
 import { motion } from 'motion/react';
 import { MapPin, Navigation, Compass, Map } from 'lucide-react';
 
@@ -47,6 +48,7 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-rose via-brand-lavender to-brand-plum" />
                   
                   <div className="relative z-10">
+                    <LotusDivider className="mb-4" />
                     <div className="inline-flex items-center gap-4 mb-6">
                       <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] sm:text-[11px] font-bold drop-shadow-sm">
                         {venue.label}

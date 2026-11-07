@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLang } from '../i18n';
+import { LotusDivider } from './Ornament';
 import { motion } from 'motion/react';
 import { Sparkles, Heart } from 'lucide-react';
 
@@ -17,6 +18,7 @@ export const CoupleDetails: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
+          <LotusDivider className="mx-auto mb-5" />
           <div className="inline-flex items-center gap-4 mb-6 mt-4">
             <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-transparent to-brand-plum/60" />
             <span className="text-brand-plum uppercase tracking-[0.5em] text-[11px] font-semibold font-sans drop-shadow-sm">{t('මනාල යුවළ', 'The Protagonists')}</span>

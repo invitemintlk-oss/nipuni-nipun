@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLang } from '../i18n';
+import { GOOGLE_SCRIPT_URL } from '../config';
+import { LotusDivider } from './Ornament';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, Loader2, Heart, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
@@ -19,7 +21,6 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
     dietaryNotes: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbz8x8mlUoOB1dJzMTtI-wR1QEea6TciU40hejJ-4WObWDYJN7GOzqQiweArl6i2hidH0w/exec";
 
   useEffect(() => {
     if (inviteeName) {
@@ -32,14 +33,17 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
     setStatus('loading');
 
     try {
+      if (!GOOGLE_SCRIPT_URL) throw new Error('Google Apps Script URL is not set (src/config.ts).');
 
       const payload = new FormData();
       payload.append('sheet', 'RSVP');
       payload.append('fullName', formData.fullName);
       payload.append('guests', formData.guests);
       payload.append('dietaryNotes', formData.dietaryNotes);
+      payload.append('event', eventParam);
+      payload.append('lang', lang);
 
-      await fetch(scriptUrl, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         body: payload,
@@ -74,6 +78,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
         <div className="lg:w-1/2 lg:pr-10 mb-12 lg:mb-0 relative text-center lg:text-left">
           <Sparkles className="absolute -top-6 -left-6 w-12 h-12 text-brand-lavender/30 animate-pulse" />
 
+          <LotusDivider className="mx-auto lg:mx-0 mb-5" />
           <div className="inline-flex items-center justify-center lg:justify-start gap-4 mb-6">
             <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] sm:text-[11px] font-bold drop-shadow-sm">
               {t('කරුණාකර දන්වන්න', 'Kindly Respond')}
