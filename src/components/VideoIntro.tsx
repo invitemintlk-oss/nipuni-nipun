@@ -13,14 +13,15 @@ const THEME_GRADIENT = "linear-gradient(180deg, #A0B092 0%, #7E8F6E 55%, #627254
 const INTRO_VIDEO = "/give_this_as_wedding_invitatio%20(online-video-cutter.com).mp4";
 
 const LOTUS_FLOURISH = "/lotus-flourish.svg";
+const LOTUS_PINK_GRADIENT = "linear-gradient(180deg, #F4B6C6 0%, #E58FA6 55%, #C9677F 100%)";
 
-function GoldMask({ src, style }: { src: string; style: React.CSSProperties }) {
+function GoldMask({ src, style, gradient = THEME_GRADIENT }: { src: string; style: React.CSSProperties; gradient?: string }) {
   return (
     <div
       aria-hidden="true"
       style={{
         ...style,
-        background: THEME_GRADIENT,
+        background: gradient,
         WebkitMaskImage: `url("${src}")`,
         maskImage: `url("${src}")`,
         WebkitMaskRepeat: "no-repeat",
@@ -135,7 +136,7 @@ export function VideoIntro({ onComplete, onMusicStart, readyToTransition = true 
           onClick={handleOpen}
         >
           <div className="intro-fade-up">
-            <GoldMask src={LOTUS_FLOURISH} style={{ width: "min(56vw,260px)", height: "min(20vw,94px)" }} />
+            <GoldMask src={LOTUS_FLOURISH} gradient={LOTUS_PINK_GRADIENT} style={{ width: "min(56vw,260px)", height: "min(20vw,94px)" }} />
           </div>
 
           <p
