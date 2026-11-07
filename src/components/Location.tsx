@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLang } from '../i18n';
 import { motion } from 'motion/react';
 import { MapPin, Navigation, Compass, Map } from 'lucide-react';
 
@@ -7,15 +8,17 @@ interface LocationProps {
 }
 
 export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
+  const { t, lang } = useLang();
+  const sf = t('font-sinhala', 'font-serif');
   const venues = [
     {
       id: 'ceremony',
-      name: "The Epitome Hotel",
-      city: "Kurunegala, Sri Lanka",
-      quote: `"අපගේ ජීවිතයේ සුන්දරතම දිනය සැමරෙන ස්ථානය"`,
-      liveLocationUrl: "https://maps.app.goo.gl/H5gj3nYvdjNJU4y86",
-      imageUrl: "https://q-xx.bstatic.com/xdata/images/hotel/1200x630/479073392.jpg?k=0f268309279e9891f97c63561f9a78a566867cb6b6daa795053b29b6cdb3bd8c&o=",
-      label: "The Venue"
+      name: t('රොන්ෆා රීජන්සි (ක්වීන් කෝට්)', 'Rongfa Regency'),
+      city: t('ගනේමුල්ල', 'Queen Court · Ganemulla, Sri Lanka'),
+      quote: t('"අපගේ ජීවිතයේ සුන්දරතම දිනය සැමරෙන ස්ථානය"', '"Where we celebrate the most beautiful day of our lives"'),
+      liveLocationUrl: "https://www.google.com/maps/search/?api=1&query=Rongfa+Regency+Ganemulla",
+      imageUrl: "/rongfa-regency.png",
+      label: t('ස්ථානය', 'The Venue')
     }
   ];
 
@@ -51,9 +54,8 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                       <div className="w-16 h-[1px] bg-gradient-to-r from-brand-plum/60 to-transparent" />
                     </div>
 
-                    <h2 className="text-5xl sm:text-6xl font-sinhala text-stone-800 mb-6 leading-tight drop-shadow-sm">
-                      මංගල <br />
-                      <span className="italic font-light text-brand-plum">උත්සවය</span>
+                    <h2 className={`text-5xl sm:text-6xl ${sf} text-stone-800 mb-6 leading-tight drop-shadow-sm`}>
+                      {t(<>උත්සව <br /><span className="italic font-light text-brand-plum">ස්ථානය</span></>, <>The Wedding <br /><span className="italic font-light text-brand-plum">Venue</span></>)}
                     </h2>
 
                     <motion.div 
@@ -66,7 +68,7 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                         <p className="text-2xl font-serif text-stone-800 mb-1">{venue.name}</p>
                         <p className="text-[11px] uppercase tracking-[0.2em] font-medium text-stone-400 leading-relaxed mb-6">{venue.city}</p>
                         
-                        <p className="text-stone-500/90 italic font-sinhala text-lg leading-relaxed max-w-sm mb-10 pl-4 border-l-[1.5px] border-brand-lavender/40">
+                        <p className={`text-stone-500/90 italic ${sf} text-lg leading-relaxed max-w-sm mb-10 pl-4 border-l-[1.5px] border-brand-lavender/40`}>
                           {venue.quote}
                         </p>
 
@@ -77,7 +79,7 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                           className="inline-flex items-center gap-3 bg-stone-800 text-brand-rose px-8 py-4 rounded-full font-sans tracking-[0.2em] text-xs uppercase hover:bg-stone-900 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-all duration-300 active:scale-95 group/btn"
                         >
                           <Navigation className="w-4 h-4 text-brand-plum group-hover/btn:rotate-45 transition-transform duration-300" />
-                          Open Live Location
+                          {t('සිතියමෙන් බලන්න', 'Open Live Location')}
                         </a>
                       </div>
                     </motion.div>
@@ -116,7 +118,7 @@ export const Location: React.FC<LocationProps> = ({ event = 'both' }) => {
                   {/* Decorative Location Pin Overlay */}
                   <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-brand-lavender/30 shadow-lg flex items-center gap-2 pointer-events-none z-30">
                     <Map className="w-4 h-4 text-brand-plum animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-widest font-bold text-stone-600">Live Map</span>
+                    <span className="text-[9px] uppercase tracking-widest font-bold text-stone-600">{t('සිතියම', 'Live Map')}</span>
                   </div>
                 </a>
               </motion.div>

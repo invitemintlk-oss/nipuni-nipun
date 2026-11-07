@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Heart } from 'lucide-react';
+import { useLang } from '../i18n';
 
 interface InviteeBannerProps {
   inviteeName: string;
@@ -8,6 +9,7 @@ interface InviteeBannerProps {
 }
 
 export const InviteeBanner: React.FC<InviteeBannerProps> = ({ inviteeName, eventLabel }) => {
+  const { t } = useLang();
   return (
     <div className="w-full bg-gradient-to-r from-brand-rose/40 via-brand-rose/80 to-brand-rose/40 border-y border-brand-lavender/30 py-12 px-6 relative overflow-hidden shadow-sm">
       {/* Decorative background glows */}
@@ -29,7 +31,7 @@ export const InviteeBanner: React.FC<InviteeBannerProps> = ({ inviteeName, event
           <div className="flex items-center gap-4 justify-center max-w-xl mx-auto">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-plum/40" />
             <p className="text-stone-600 font-sans text-lg sm:text-xl font-medium tracking-wide">
-              We warmly invite you to share the joy of our wedding celebration.
+              {t('අපගේ මංගල උත්සවයට ඔබව අපි ගෞරවයෙන් ආරාධනා කරන්නෙමු.', 'We warmly invite you to share the joy of our wedding celebration.')}
             </p>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-plum/40" />
           </div>

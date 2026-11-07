@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { useLang } from '../i18n';
 
 interface CountdownProps {
   targetDate: Date;
 }
 
 export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+  const { t } = useLang();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -32,10 +34,10 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   return (
     <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-10 py-6">
       {[
-        { label: 'Days', value: timeLeft.days },
-        { label: 'Hours', value: timeLeft.hours },
-        { label: 'Minutes', value: timeLeft.minutes },
-        { label: 'Seconds', value: timeLeft.seconds },
+        { label: t('දින', 'Days'), value: timeLeft.days },
+        { label: t('පැය', 'Hours'), value: timeLeft.hours },
+        { label: t('මිනිත්තු', 'Minutes'), value: timeLeft.minutes },
+        { label: t('තත්පර', 'Seconds'), value: timeLeft.seconds },
       ].map((item, i) => (
         <motion.div 
           key={item.label}

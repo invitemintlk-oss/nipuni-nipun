@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLang } from '../i18n';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Loader2, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
@@ -15,17 +16,20 @@ interface WishesSectionProps {
   inviteeName?: string;
 }
 
-const getRelativeTime = (date: Date) => {
+const getRelativeTime = (date: Date, si: boolean) => {
   const diff = Date.now() - date.getTime();
   const minutes = Math.floor(diff / 60000);
-  if (minutes < 1) return 'just now';
-  if (minutes < 60) return `${minutes}m ago`;
+  if (minutes < 1) return si ? 'දැන්' : 'just now';
+  if (minutes < 60) return si ? `මිනිත්තු ${minutes}කට පෙර` : `${minutes}m ago`;
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.floor(hours / 24)}d ago`;
+  if (hours < 24) return si ? `පැය ${hours}කට පෙර` : `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return si ? `දින ${days}කට පෙර` : `${days}d ago`;
 };
 
 export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both', inviteeName = '' }) => {
+  const { t, lang } = useLang();
+  const sf = t('font-sinhala', 'font-serif');
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [formData, setFormData] = useState({ name: inviteeName, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,10 +69,10 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
       // Prepend the new wish to the list
       setWishes(prev => [newWish, ...prev]);
       setFormData({ name: inviteeName, message: '' });
-      toast.success('Your beautiful blessing has been shared!');
+      toast.success(t('ඔබගේ සුබපැතුම ලැබුණි. ස්තූතියි!', 'Your beautiful blessing has been shared!'));
     } catch (error) {
       console.error('Error submitting wish: ', error);
-      toast.error('Could not send your wishes. Please try again.');
+      toast.error(t('යැවීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න.', 'Could not send your wishes. Please try again.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -82,10 +86,10 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
       <div className="text-center mb-16 relative">
         <Sparkles className="absolute -top-8 left-1/2 -translate-x-1/2 w-8 h-8 text-brand-lavender/40 animate-pulse" />
         <span className="text-brand-plum uppercase tracking-[0.5em] text-[10px] font-bold mb-4 block drop-shadow-sm">
-          Guestbook
+          {t('සුබපැතුම්', 'Guestbook')}
         </span>
-        <h2 className="text-5xl sm:text-7xl font-sinhala text-stone-800 tracking-tight drop-shadow-sm">
-          ආශිර්වාද සහ <span className="italic font-light text-brand-plum">සුබපැතුම්</span>
+        <h2 className={`text-5xl sm:text-7xl ${sf} text-stone-800 tracking-tight drop-shadow-sm`}>
+          {t(<>ආශිර්වාද සහ <span className="italic font-light text-brand-plum">සුබපැතුම්</span></>, <>Blessings &amp; <span className="italic font-light text-brand-plum">Wishes</span></>)}
         </h2>
         <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-brand-lavender/60 to-transparent mx-auto mt-8" />
       </div>
@@ -105,18 +109,18 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
 
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="text-center mb-10">
-              <p className="text-stone-500 font-sinhala text-lg leading-relaxed max-w-lg mx-auto">
-                අපගේ ඉදිරි ගමන වෙනුවෙන් ඔබගේ ආශිර්වාදය හා සුබපැතුම් මෙහි එක් කරන්න.
+              <p className={`text-stone-500 ${sf} text-lg leading-relaxed max-w-lg mx-auto`}>
+                {t('අපගේ නව දිවියට ඔබගේ ආශිර්වාදය හා සුබපැතුම් මෙහි ලියන්න.', 'Leave your blessings and wishes for our journey ahead.')}
               </p>
             </div>
 
             <div className="space-y-6">
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2 text-left">Your Name</label>
+                <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2 text-left">{t('ඔබගේ නම', 'Your Name')}</label>
                 <input
                   required
                   type="text"
-                  placeholder="E.g., Uncle John"
+                  placeholder={t('ඔබගේ නම', 'E.g., Uncle John')}
                   className="w-full bg-white/80 px-6 py-4 rounded-full border border-stone-200/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 font-serif italic text-lg shadow-inner placeholder:text-stone-300 text-stone-700"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -124,10 +128,10 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
               </div>
               
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2 text-left">Your Message</label>
+                <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-stone-500 mb-3 ml-2 text-left">{t('ඔබගේ පණිවිඩය', 'Your Message')}</label>
                 <textarea
                   required
-                  placeholder="Wishing you a lifetime of happiness..."
+                  placeholder={t('ඔබගේ සුබපැතුම් මෙහි ලියන්න...', 'Wishing you a lifetime of happiness...')}
                   className="w-full bg-white/80 px-6 py-5 rounded-[2rem] border border-stone-200/60 focus:ring-2 focus:ring-brand-lavender/30 focus:border-brand-plum/40 outline-none transition-all duration-300 h-36 resize-none font-serif italic text-lg shadow-inner placeholder:text-stone-300 text-stone-700"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -146,7 +150,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
                 ) : (
                   <>
                     <Send className="w-4 h-4 text-brand-plum" />
-                    Share Blessing
+                    {t('සුබපැතුම් යවන්න', 'Share Blessing')}
                   </>
                 )}
               </button>
@@ -169,7 +173,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ eventParam = 'both
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 mb-4">
                   <h4 className="font-display text-2xl text-stone-800 tracking-tight pl-2">{wish.name}</h4>
                   <span className="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold bg-white/60 px-3 py-1 rounded-full border border-stone-100/50">
-                    {wish.createdAt ? getRelativeTime(wish.createdAt) : 'just now'}
+                    {wish.createdAt ? getRelativeTime(wish.createdAt, lang === 'si') : t('දැන්', 'just now')}
                   </span>
                 </div>
                 <p className="text-stone-600 font-serif italic text-lg sm:text-lg leading-relaxed pl-2">

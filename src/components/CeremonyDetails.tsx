@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLang } from '../i18n';
 import { motion } from 'motion/react';
 import { Clock, Calendar, MapPin, Heart, Sparkles, Palette, Utensils } from 'lucide-react';
 
@@ -7,6 +8,8 @@ interface CeremonyDetailsProps {
 }
 
 export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both' }) => {
+  const { t, lang } = useLang();
+  const sf = t('font-sinhala', 'font-serif');
   const isHomecoming = event === 'homecoming';
 
   return (
@@ -25,17 +28,17 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
           >
             <div className="inline-flex items-center gap-4 mb-6">
               <span className="text-brand-plum uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[11px] sm:text-xs font-bold drop-shadow-sm">
-                The Sacred Union
+                {t('උත්සව විස්තර', 'The Sacred Union')}
               </span>
               <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-brand-plum/60 to-transparent" />
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-sinhala text-stone-800 mb-8 leading-[1.1] drop-shadow-sm">
-                <>විවාහ <br /><span className="italic font-light text-brand-plum">උත්සවය</span></>
+            <h2 className={`text-5xl sm:text-6xl lg:text-7xl ${sf} text-stone-800 mb-8 leading-[1.1] drop-shadow-sm`}>
+                {t(<>මංගල <br /><span className="italic font-light text-brand-plum">උත්සවය</span></>, <>The Wedding <br /><span className="italic font-light text-brand-plum">Ceremony</span></>)}
             </h2>
 
-            <p className="text-stone-500/90 font-sinhala text-lg sm:text-xl leading-relaxed mb-16 max-w-lg">
-                අපගේ මේ සුන්දර දිනයට ඔබගේ ආශිර්වාදය ලබා දීමට පැමිණෙන මෙන් ආදරයෙන් ආරාධනා කර සිටිමු.
+            <p className={`text-stone-500/90 ${sf} text-lg sm:text-xl leading-relaxed mb-16 max-w-lg`}>
+                {t('හෝටල් පරිශ්‍රයේ දී පැවැත්වෙන මංගල උත්සවයට ඔබව අපි ගෞරවයෙන් ආරාධනා කරන්නෙමු.', 'Together with love, we welcome you to share our happiness on this beautiful day.')}
             </p>
 
             {/* Premium Timeline */}
@@ -47,8 +50,8 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
                   <Calendar className="w-5 h-5 text-brand-plum group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
-                  <h4 className="font-sinhala text-2xl sm:text-3xl text-stone-800 group-hover:text-brand-plum transition-colors duration-500">
-                    දිනය: 2026 ඔක්තෝබර් 29
+                  <h4 className={`${sf} text-2xl sm:text-3xl text-stone-800 group-hover:text-brand-plum transition-colors duration-500`}>
+                    {t('2026 දෙසැම්බර් 11 සිකුරාදා', 'Friday, 11th December 2026')}
                   </h4>
                 </div>
               </div>
@@ -59,8 +62,8 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
                   <MapPin className="w-5 h-5 text-brand-plum group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
-                  <h4 className="font-sinhala text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500">
-                    <span className="font-semibold text-stone-700">ස්ථානය:</span> The Epitome, <br className="hidden sm:block" /> Kurunegala
+                  <h4 className={`${sf} text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500`}>
+                    <span className="font-semibold text-stone-700">{t('ස්ථානය:', 'Venue:')}</span> {t(<>රොන්ෆා රීජන්සි (ක්වීන් කෝට්), <br className="hidden sm:block" /> ගනේමුල්ල</>, <>Queen Court, <br className="hidden sm:block" /> Rongfa Regency, Ganemulla</>)}
                   </h4>
                 </div>
               </div>
@@ -71,8 +74,8 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
                   <Clock className="w-5 h-5 text-brand-plum group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
-                  <h4 className="font-sinhala text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500">
-                    <span className="font-semibold text-stone-700">වේලාව:</span> 9.00 AM - 4.00 PM
+                  <h4 className={`${sf} text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500`}>
+                    <span className="font-semibold text-stone-700">{t('වේලාව:', 'Time:')}</span> {t('ප.ව. 6.00 සිට ප.ව. 10.30 දක්වා', '6.00 PM - 10.30 PM')}
                   </h4>
                 </div>
               </div>
@@ -83,8 +86,8 @@ export const CeremonyDetails: React.FC<CeremonyDetailsProps> = ({ event = 'both'
                   <Sparkles className="w-5 h-5 text-brand-plum group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
-                  <h4 className="font-sinhala text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500">
-                    <span className="font-semibold text-stone-700">පෝරුවේ චාරිත්‍ර:</span> 10.00 AM
+                  <h4 className={`${sf} text-2xl sm:text-3xl text-stone-800 leading-relaxed group-hover:text-brand-plum transition-colors duration-500`}>
+                    <span className="font-semibold text-stone-700">{t('පෝරුවේ චාරිත්‍රය:', 'Poruwa Ceremony:')}</span> {t('ප.ව. 6.31 ට', '6.31 PM')}
                   </h4>
                 </div>
               </div>

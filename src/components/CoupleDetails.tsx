@@ -1,8 +1,10 @@
 import React from 'react';
+import { useLang } from '../i18n';
 import { motion } from 'motion/react';
 import { Sparkles, Heart } from 'lucide-react';
 
 export const CoupleDetails: React.FC = () => {
+  const { t, lang } = useLang();
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
       {/* Decorative ambient background */}
@@ -17,14 +19,20 @@ export const CoupleDetails: React.FC = () => {
         >
           <div className="inline-flex items-center gap-4 mb-6 mt-4">
             <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-transparent to-brand-plum/60" />
-            <span className="text-brand-plum uppercase tracking-[0.5em] text-[11px] font-semibold font-sans drop-shadow-sm">The Protagonists</span>
+            <span className="text-brand-plum uppercase tracking-[0.5em] text-[11px] font-semibold font-sans drop-shadow-sm">{t('මනාල යුවළ', 'The Protagonists')}</span>
             <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-l from-transparent to-brand-plum/60" />
           </div>
           <h2 className="text-5xl sm:text-7xl font-names text-stone-800 tracking-tight drop-shadow-sm">
-            Shakya <span className="text-brand-plum font-light mx-2">&</span> Supun
-            <div className="text-3xl sm:text-5xl mt-4 font-sinhala text-stone-800 drop-shadow-sm">
-              ශාක්‍යා සහ සුපුන්
-            </div>
+            {t(
+              <span className="font-sinhala">නිපුනි <span className="text-brand-plum font-light mx-2">සහ</span> නිපුන්</span>,
+              <>Nipuni <span className="text-brand-plum font-light mx-2">&</span> Nipun</>
+            )}
+            <p className="mt-8 text-lg sm:text-xl font-serif italic text-stone-500/90 tracking-normal leading-relaxed max-w-xl mx-auto">
+              {t(
+                <>චාරිත්‍රානුකූලව අතිනත ගැනීමේ ප්‍රීතිය නිමිත්තෙන්</>,
+                <>Unplanned love, unexpected bond,<br />right time, with right person forever and together.</>
+              )}
+            </p>
           </h2>
         </motion.div>
       </div>
@@ -39,18 +47,22 @@ export const CoupleDetails: React.FC = () => {
           className="text-center lg:text-right flex-1 lg:pr-10 order-1"
         >
           <div className="mb-4 flex flex-col items-center lg:items-end">
-            <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-bold mb-3 block">The Groom</span>
-            <h3 className="text-4xl sm:text-5xl font-names text-stone-800 mb-1 drop-shadow-sm">Supun</h3>
-            <h4 className="text-2xl sm:text-3xl font-sinhala text-stone-700 mb-3 drop-shadow-sm">සුපුන් සංජීව</h4>
-            <p className="text-stone-500/90 font-sans text-xs sm:text-sm text-center lg:text-right">
-              Aththidiya Vidanalage Don Thilak Rohitha Kumara &<br/>
-              Jasinliyanage Dona Achala Kamini Wijegunasekara
+            <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-bold mb-3 block">{t('මනාලයා', 'The Groom')}</span>
+            {lang === 'en' && <h3 className="text-4xl sm:text-5xl font-names text-stone-800 mb-1 drop-shadow-sm">Nipun</h3>}
+            {lang === 'si' && <h4 className="text-4xl sm:text-5xl font-sinhala text-stone-800 mb-3 drop-shadow-sm">නිපුන්</h4>}
+            {lang === 'en' && (
+<p className="text-stone-500/90 font-sans text-xs sm:text-sm text-center lg:text-right">
+              Loving Son of<br/>
+              Mr. Gamage & Mrs. Perera
             </p>
-            <p className="text-stone-500/90 font-sinhala text-sm sm:text-base mt-2 text-center lg:text-right">
-              අත්තිඩිය විදානලාගේ දොන් තිලක් රෝහිත කුමාර සහ<br/>
-              ජාසින්ලියනගේ දෝන අචලා කාමිනී විජේගුණසේකරගේ<br/>
-              ආදරණීය පුත්,
+)}
+            {lang === 'si' && (
+<p className="text-stone-500/90 font-sinhala text-sm sm:text-base mt-2 text-center lg:text-right">
+              ගමගේ මහතාගේ සහ<br/>
+                  පෙරේරා මහත්මියගේ<br/>
+              ආදරණීය පුතු
             </p>
+)}
           </div>
           <div className="hidden lg:flex justify-end mt-8">
             <Heart className="w-6 h-6 text-brand-lavender/60 fill-brand-lavender/20 transform hover:scale-110 transition-transform cursor-pointer" />
@@ -69,18 +81,22 @@ export const CoupleDetails: React.FC = () => {
           className="text-center lg:text-left flex-1 lg:pl-10 order-2"
         >
           <div className="mb-4 flex flex-col items-center lg:items-start">
-            <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-bold mb-3 block">The Bride</span>
-            <h3 className="text-4xl sm:text-5xl font-names text-stone-800 mb-1 drop-shadow-sm">Shakya</h3>
-            <h4 className="text-2xl sm:text-3xl font-sinhala text-stone-700 mb-3 drop-shadow-sm">නෙත්මි ශාක්‍යා හේරත්</h4>
-            <p className="text-stone-500/90 font-sans text-xs sm:text-sm text-center lg:text-left">
-              Herath Bandara Mudiyanselage Chaminda Pushpakumara Herath &<br/>
-              Dompege Shalika Madushini Siriwardana
+            <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-bold mb-3 block">{t('මනාලිය', 'The Bride')}</span>
+            {lang === 'en' && <h3 className="text-4xl sm:text-5xl font-names text-stone-800 mb-1 drop-shadow-sm">Nipuni</h3>}
+            {lang === 'si' && <h4 className="text-4xl sm:text-5xl font-sinhala text-stone-800 mb-3 drop-shadow-sm">නිපුනි</h4>}
+            {lang === 'en' && (
+<p className="text-stone-500/90 font-sans text-xs sm:text-sm text-center lg:text-left">
+              Loving Daughter of<br/>
+              Mr. Hettiarachchi & Mrs. Silva
             </p>
-            <p className="text-stone-500/90 font-sinhala text-sm sm:text-base mt-2 text-center lg:text-left">
-              හේරත් බංඩාර මුදියන්සේලාගේ චමින්ද පුෂ්පකුමාර හේරත් සහ<br/>
-              දොම්පේගේ ශාලිකා මදුෂිණි සිරිවර්ධනගේ<br/>
-              ආදරණීය දියණිය,
+)}
+            {lang === 'si' && (
+<p className="text-stone-500/90 font-sinhala text-sm sm:text-base mt-2 text-center lg:text-left">
+              හෙට්ටිආරච්චි මහතාගේ සහ<br/>
+                  සිල්වා මහත්මියගේ<br/>
+              ආදරණීය දියණිය
             </p>
+)}
           </div>
           <div className="hidden lg:flex justify-start mt-8">
             <Heart className="w-6 h-6 text-brand-lavender/60 fill-brand-lavender/20 transform hover:scale-110 transition-transform cursor-pointer" />

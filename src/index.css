@@ -8,13 +8,18 @@
   --color-brand-rose: #D4DEC9;
   --color-brand-blush: #F9F6F0;
 
-  --font-serif: "Cormorant Garamond", serif;
-  --font-display: "Great Vibes", cursive;
-  --font-names: "Cinzel Decorative", serif;
+  --font-serif: "Cormorant Garamond", "Abhaya Libre", serif;
+  --font-display: "Great Vibes", "Abhaya Libre", cursive;
+  --font-names: "Cinzel Decorative", "Abhaya Libre", serif;
   --font-century: "Century", "Century Schoolbook", serif;
-  --font-sans: "Inter", sans-serif;
-  --font-playfair: "Playfair Display", serif;
+  --font-sans: "Inter", "Abhaya Libre", sans-serif;
+  --font-playfair: "Playfair Display", "Abhaya Libre", serif;
   --font-sinhala: "Abhaya Libre", serif;
+}
+
+/* Wide letter-spacing breaks Sinhala letter shapes, so drop it in Sinhala mode. */
+html[lang="si"] [class*="tracking-"] {
+  letter-spacing: normal !important;
 }
 
 :root {

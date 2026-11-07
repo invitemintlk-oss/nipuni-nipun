@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useLang, LanguageToggle } from '../i18n';
 import { Music, VolumeX, Heart } from 'lucide-react';
 import { Hero } from './Hero';
 import { FloatingPetals } from './FloatingPetals';
@@ -34,6 +35,7 @@ export function InvitationContent({
   isMusicPlaying,
   onToggleMusic,
 }: InvitationContentProps) {
+  const { t, lang } = useLang();
   if (!active) return null;
 
   return (
@@ -56,6 +58,8 @@ export function InvitationContent({
           <VolumeX className="w-5 h-5 sm:w-6 sm:h-6" />
         )}
       </motion.button>
+
+      <LanguageToggle className="fixed top-6 left-6 z-50" />
 
       <FloatingPetals />
       <Hero event={eventParam} inviteeName={fullInviteeName} />
@@ -99,7 +103,7 @@ export function InvitationContent({
           </div>
           <div className="relative z-10 max-w-6xl mx-auto px-6 mb-16 text-center">
             <span className="text-stone-900 uppercase tracking-[0.4em] text-[10px] sm:text-[11px] font-bold drop-shadow-[0_2px_4px_rgba(255,255,255,0.8)]">
-              The Wait Is Almost Over
+              {t('සුබ මොහොත එළඹෙන තුරු', 'The Wait Is Almost Over')}
             </span>
           </div>
           <div className="relative z-10">
@@ -139,13 +143,13 @@ export function InvitationContent({
         <footer className="py-12 bg-white border-t border-brand-lavender/20 text-center relative overflow-hidden mt-10">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-lavender/10 blur-[80px] rounded-full pointer-events-none" />
           <Heart className="w-6 h-6 mx-auto mb-6 text-brand-plum fill-brand-lavender/20" />
-          <p className="font-names text-4xl sm:text-5xl text-stone-800 mb-1">Shakya & Supun</p>
-          <p className="font-sinhala text-2xl sm:text-3xl text-stone-700 mb-4">ශාක්‍යා සහ සුපුන්</p>
+          {lang === 'en' && <p className="font-names text-4xl sm:text-5xl text-stone-800 mb-1">Nipuni & Nipun</p>}
+          {lang === 'si' && <p className="font-sinhala text-2xl sm:text-3xl text-stone-700 mb-4">නිපුනි සහ නිපුන්</p>}
           <p className="text-[11px] sm:text-xs font-serif uppercase tracking-[0.3em] font-medium text-stone-500 mb-6 drop-shadow-sm">
-            October 29, 2026
+            {t('2026 දෙසැම්බර් 11 සිකුරාදා', 'Friday, December 11, 2026')}
           </p>
           <p className="text-stone-400 text-xs mt-4 font-sans tracking-wider">
-            Want a beautiful wedding website like this? Create yours with <a target="_blank" rel="noreferrer" className="text-brand-plum font-bold hover:text-brand-rose transition-colors underline decoration-brand-plum/30 hover:decoration-brand-rose" href="https://wa.me/94707819074">invitemint</a>
+            {t('මෙවැනි මංගල ආරාධනා වෙබ් අඩවියක් ඔබටත් සාදාගන්න', 'Want a beautiful wedding website like this? Create yours with')} <a target="_blank" rel="noreferrer" className="text-brand-plum font-bold hover:text-brand-rose transition-colors underline decoration-brand-plum/30 hover:decoration-brand-rose" href="https://wa.me/94707819074">invitemint</a>
           </p>
         </footer>
       </DeferredMount>

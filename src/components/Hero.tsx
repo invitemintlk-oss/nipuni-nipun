@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useLang } from '../i18n';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Sparkles, Heart } from 'lucide-react';
 import { FloatingPetals } from './FloatingPetals';
@@ -33,6 +34,7 @@ function useIsTouchDevice() {
 }
 
 export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
+  const { t, lang } = useLang();
   const containerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const isTouch = useIsTouchDevice();
@@ -83,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
 
           <div className="mb-6 sm:mb-10 inline-block bg-gradient-to-r from-brand-rose/90 via-white/95 to-brand-rose/90 backdrop-blur-md border border-brand-plum/40 px-8 sm:px-10 py-2.5 sm:py-3 rounded-full shadow-[0_10px_30px_rgba(98,114,84,0.2)]">
             <span className="text-stone-900 uppercase tracking-[0.6em] sm:tracking-[0.8em] text-[10px] sm:text-xs font-black block drop-shadow-sm font-sans">
-              The Celebration of Love
+              {t('සාදර ඇරයුමයි', 'We Decided on Forever')}
             </span>
           </div>
 
@@ -91,13 +93,18 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] sm:w-[125%] h-[150%] sm:h-[160%] bg-gradient-radial from-white/95 via-white/85 to-transparent blur-[40px] sm:blur-[70px] rounded-full pointer-events-none" />
 
             <h1 className="relative text-4xl sm:text-[5.5rem] lg:text-[7.5rem] font-names text-[var(--color-brand-plum)] font-normal leading-normal sm:leading-[0.85] drop-shadow-[0_4px_16px_rgba(255,255,255,0.9)] tracking-normal sm:tracking-tight overflow-visible py-2">
-              SHAKYA <br className="sm:hidden" />
-              <span className="text-[var(--color-brand-plum)] font-normal mx-2 sm:mx-6 text-3xl sm:text-[4.5rem] lg:text-[6rem] inline-block -translate-y-1 sm:-translate-y-6 drop-shadow-[0_4px_12px_rgba(98,114,84,0.3)]">&</span>
-              <br className="sm:hidden" />
-              SUPUN
-              <div className="text-3xl sm:text-6xl mt-4 sm:mt-6 font-sinhala text-[var(--color-brand-plum)] drop-shadow-[0_4px_12px_rgba(255,255,255,0.9)]">
-                ශාක්‍යා සහ සුපුන්
-              </div>
+              {lang === 'en' ? (
+                <>
+                  NIPUNI <br className="sm:hidden" />
+                <span className="text-[var(--color-brand-plum)] font-normal mx-2 sm:mx-6 text-3xl sm:text-[4.5rem] lg:text-[6rem] inline-block -translate-y-1 sm:-translate-y-6 drop-shadow-[0_4px_12px_rgba(98,114,84,0.3)]">&</span>
+                <br className="sm:hidden" />
+                  NIPUN
+                </>
+              ) : (
+                <span className="block font-sinhala text-5xl sm:text-[5.5rem] lg:text-[6.5rem] leading-tight">
+                  නිපුනි <span className="text-3xl sm:text-6xl mx-2">සහ</span> නිපුන්
+                </span>
+              )}
             </h1>
           </div>
 
@@ -105,8 +112,8 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
             <div className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-brand-plum to-transparent" />
             <p className="text-[1.15rem] sm:text-2xl font-sans text-stone-900 tracking-wide px-2 text-center max-w-xl leading-relaxed drop-shadow-sm font-medium">
               {inviteeName 
-                ? <>We cordially invite <span className="text-brand-plum font-bold">{inviteeName}</span> to our wedding</>
-                : <>We cordially invite you to our wedding</>}
+                ? t(<><span className="text-brand-plum font-bold">{inviteeName}</span>, ඔබව අපි ගෞරවයෙන් ආරාධනා කරන්නෙමු</>, <>We cordially invite <span className="text-brand-plum font-bold">{inviteeName}</span> to our wedding</>)
+                : t(<>ඔබව අපි ගෞරවයෙන් ආරාධනා කරන්නෙමු</>, <>We cordially invite you to our wedding</>)}
             </p>
             <div className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-brand-plum to-transparent" />
           </div>
@@ -119,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
         <div className="w-[1px] h-28 bg-gradient-to-b from-transparent via-brand-plum to-transparent" />
         <div className="bg-stone-900/90 backdrop-blur-md px-2.5 py-6 rounded-full border border-brand-plum/40 shadow-xl">
           <p className="writing-mode-vertical text-[11px] uppercase tracking-[0.7em] text-brand-rose font-bold font-sans">
-            The Epitome • Kurunegala
+            {t('රොන්ෆා රීජන්සි • ගනේමුල්ල', 'Rongfa Regency • Ganemulla')}
           </p>
         </div>
         <div className="w-[1px] h-28 bg-gradient-to-t from-transparent via-brand-plum to-transparent" />
@@ -129,7 +136,7 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
         <div className="w-[1px] h-28 bg-gradient-to-b from-transparent via-brand-plum to-transparent" />
         <div className="bg-stone-900/90 backdrop-blur-md px-2.5 py-6 rounded-full border border-brand-plum/40 shadow-xl">
           <p className="writing-mode-vertical text-[11px] uppercase tracking-[0.7em] text-brand-rose font-bold font-sans rotate-180">
-            Save the Date • October 29th
+            {t('දිනය සුරකින්න • 2026.12.11', 'Save the Date • December 11th')}
           </p>
         </div>
         <div className="w-[1px] h-28 bg-gradient-to-t from-transparent via-brand-plum to-transparent" />
@@ -142,7 +149,7 @@ export const Hero: React.FC<HeroProps> = ({ event = 'both', inviteeName }) => {
         transition={{ delay: 1, duration: 0.6 }}
       >
         <span className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.5em] text-stone-900 font-extrabold bg-gradient-to-r from-brand-rose via-white to-brand-rose px-5 py-2 rounded-full border border-brand-plum/40 backdrop-blur-md shadow-lg">
-          Discover
+          {t('ඉදිරියට', 'Discover')}
         </span>
         <div className="w-[1px] h-6 sm:h-16 bg-gradient-to-b from-brand-plum to-transparent animate-bounce" />
       </motion.div>
