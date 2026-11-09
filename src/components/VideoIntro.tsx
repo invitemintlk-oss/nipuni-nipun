@@ -157,9 +157,9 @@ export function VideoIntro({ onComplete, onMusicStart, readyToTransition = true 
             className="mt-4 intro-fade-up"
             style={{ animationDelay: ".3s", fontFamily: t(SINHALA, '"Playball", cursive'), fontSize: "clamp(1.4rem,5.5vw,2.1rem)", fontWeight: 600 }}
           >
-            <span style={{ color: "#627254" }}>{t("නිපුනි", "Nipuni")}</span>
-            <span style={{ color: "#4F5D43", margin: "0 0.4rem", fontWeight: 400 }}>{t("සහ", "&")}</span>
             <span style={{ color: "#627254" }}>{t("නිපුන්", "Nipun")}</span>
+            <span style={{ color: "#4F5D43", margin: "0 0.4rem", fontWeight: 400 }}>{t("සහ", "&")}</span>
+            <span style={{ color: "#627254" }}>{t("නිපුනි", "Nipuni")}</span>
           </p>
 
           <button

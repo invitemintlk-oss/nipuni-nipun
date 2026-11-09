@@ -1,6 +1,6 @@
 /**
  * Google Apps Script web-app URL that saves RSVPs and wishes to the
- * Nipuni & Nipun Google Sheet. See google-apps-script/SETUP.md.
+ * Nipun & Nipuni Google Sheet. See google-apps-script/SETUP.md.
  *
  * Paste the "/exec" URL from Deploy ▸ New deployment below, or set
  * VITE_GOOGLE_APPS_SCRIPT_URL in a .env file / your hosting settings.

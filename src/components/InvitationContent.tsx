@@ -148,8 +148,8 @@ export function InvitationContent({
         <footer className="py-12 bg-white border-t border-brand-lavender/20 text-center relative overflow-hidden mt-10">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-lavender/10 blur-[80px] rounded-full pointer-events-none" />
           <Heart className="w-6 h-6 mx-auto mb-6 text-brand-plum fill-brand-lavender/20" />
-          {lang === 'en' && <p className="font-names text-4xl sm:text-5xl text-stone-800 mb-1">Nipuni & Nipun</p>}
-          {lang === 'si' && <p className="font-sinhala text-2xl sm:text-3xl text-stone-700 mb-4">නිපුනි සහ නිපුන්</p>}
+          {lang === 'en' && <p className="font-names text-4xl sm:text-5xl text-stone-800 mb-1">Nipun & Nipuni</p>}
+          {lang === 'si' && <p className="font-sinhala text-2xl sm:text-3xl text-stone-700 mb-4">නිපුන් සහ නිපුනි</p>}
           <p className="text-[11px] sm:text-xs font-serif uppercase tracking-[0.3em] font-medium text-stone-500 mb-6 drop-shadow-sm">
             {t('2026 දෙසැම්බර් 11 සිකුරාදා', 'Friday, December 11, 2026')}
           </p>

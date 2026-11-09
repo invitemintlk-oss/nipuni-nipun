@@ -26,8 +26,8 @@ export const CoupleDetails: React.FC = () => {
           </div>
           <h2 className="text-5xl sm:text-7xl font-names text-stone-800 tracking-tight drop-shadow-sm">
             {t(
-              <span className="font-sinhala">නිපුනි <span className="text-brand-plum font-light mx-2">සහ</span> නිපුන්</span>,
-              <>Nipuni <span className="text-brand-plum font-light mx-2">&</span> Nipun</>
+              <span className="font-sinhala">නිපුන් <span className="text-brand-plum font-light mx-2">සහ</span> නිපුනි</span>,
+              <>Nipun <span className="text-brand-plum font-light mx-2">&</span> Nipuni</>
             )}
             <p className="mt-8 text-lg sm:text-xl font-serif italic text-stone-500/90 tracking-normal leading-relaxed max-w-xl mx-auto">
               {t(
