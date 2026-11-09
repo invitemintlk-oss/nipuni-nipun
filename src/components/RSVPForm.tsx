@@ -100,7 +100,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ inviteeName = '', eventName 
           <div className="w-12 h-[1px] bg-brand-lavender/50 mx-auto lg:mx-0 mb-6" />
 
           <div className="space-y-2 font-sans text-stone-700">
-            <a href="tel:+94765797951" className="block hover:text-brand-plum transition-colors">📞 076 579 7951 <span className="text-stone-500">({t('කොෂිලා', 'Koshila')})</span></a>
+            <a href="tel:+94765797951" className="block hover:text-brand-plum transition-colors">📞 076 579 7951 <span className="text-stone-500">({t('කෝෂිලා', 'Koshila')})</span></a>
             <a href="tel:+94756600150" className="block hover:text-brand-plum transition-colors">📞 075 660 0150 <span className="text-stone-500">({t('කමල්සිරි', 'Kamalsiri')})</span></a>
           </div>
         </div>
