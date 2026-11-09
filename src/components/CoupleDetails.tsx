@@ -72,7 +72,25 @@ export const CoupleDetails: React.FC = () => {
         </motion.div>
 
         {/* Center Couple Image (Arch Design) */}
-
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, ease: "easeOut" }}
+          className="order-first lg:order-2 flex-shrink-0 relative"
+        >
+          <div className="absolute -inset-3 rounded-t-full rounded-b-[2rem] border border-brand-lavender/50 pointer-events-none" />
+          <div className="w-60 h-[22rem] sm:w-72 sm:h-[26rem] rounded-t-full rounded-b-[1.75rem] overflow-hidden shadow-[0_25px_50px_rgba(98,114,84,0.25)] border-4 border-white">
+            <img
+              src="/pre/couple-1.jpeg"
+              alt={t('නිපුන් සහ නිපුනි', 'Nipun & Nipuni')}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 62%' }}
+            />
+          </div>
+        </motion.div>
 
         {/* Bride Details (Right) */}
         <motion.div
@@ -80,7 +98,7 @@ export const CoupleDetails: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          className="text-center lg:text-left flex-1 lg:pl-10 order-2"
+          className="text-center lg:text-left flex-1 lg:pl-10 order-2 lg:order-3"
         >
           <div className="mb-4 flex flex-col items-center lg:items-start">
             <span className="text-brand-plum uppercase tracking-[0.4em] text-[10px] font-bold mb-3 block">{t('මනාලිය', 'The Bride')}</span>

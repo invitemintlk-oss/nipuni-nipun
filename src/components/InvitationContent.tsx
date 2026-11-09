@@ -5,6 +5,7 @@ import { Music, VolumeX, Heart } from 'lucide-react';
 import { Hero } from './Hero';
 import { FloatingPetals } from './FloatingPetals';
 import { CoupleDetails } from './CoupleDetails';
+import { CouplePhotos } from './CouplePhotos';
 
 import { CeremonyDetails } from './CeremonyDetails';
 import { Location } from './Location';
@@ -75,6 +76,12 @@ export function InvitationContent({
         <div className="py-24 sm:py-32 bg-gradient-to-b from-brand-blush via-white to-brand-blush relative overflow-hidden">
           <MandalaBackdrop />
           <CoupleDetails />
+        </div>
+      </DeferredMount>
+
+      <DeferredMount active={active} delay={150} minHeight="40vh">
+        <div className="py-20 sm:py-28 bg-brand-blush relative overflow-hidden">
+          <CouplePhotos />
         </div>
       </DeferredMount>
 
