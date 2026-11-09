@@ -79,15 +79,16 @@ export const CoupleDetails: React.FC = () => {
           transition={{ duration: 1.1, ease: "easeOut" }}
           className="order-first lg:order-2 flex-shrink-0 relative"
         >
-          <div className="absolute -inset-3 rounded-t-full rounded-b-[2rem] border border-brand-lavender/50 pointer-events-none" />
-          <div className="w-60 h-[22rem] sm:w-72 sm:h-[26rem] rounded-t-full rounded-b-[1.75rem] overflow-hidden shadow-[0_25px_50px_rgba(98,114,84,0.25)] border-4 border-white">
+          <div className="absolute -inset-3 rounded-[2.25rem] border border-brand-lavender/50 pointer-events-none" />
+          <div className="w-64 sm:w-80 rounded-[1.75rem] overflow-hidden shadow-[0_25px_50px_rgba(98,114,84,0.25)] border-4 border-white">
             <img
               src="/pre/couple-1.jpeg"
               alt={t('නිපුන් සහ නිපුනි', 'Nipun & Nipuni')}
               loading="lazy"
               decoding="async"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 62%' }}
+              width={930}
+              height={1392}
+              className="block w-full h-auto"
             />
           </div>
         </motion.div>
